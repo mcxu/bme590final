@@ -81,7 +81,7 @@ export default class MyUpload extends Component {
 	 myob['email'] = 'test_email@duke.edu';
 	 myob['filename'] = this.state.myFnArray ;
 
- axios.post('http://vcm-7308.vm.duke.edu:5000/api/process/upload_image', myob)
+ axios.post('http://localhost:5000/api/process/upload_image', myob)
  .then(res => {
 	console.log(res)
  })
@@ -107,7 +107,7 @@ console.log(error);
 	 myob['image_data'] = this.state.zipContainer;
 	 myob['email'] = 'test_email@duke.edu';
 	 myob['filename'] = 'stevenisASIAN.zip'
- axios.post('http://vcm-7308.vm.duke.edu:5000/api/process/upload_image', myob)
+ axios.post('http://localhost:5000/api/process/upload_image', myob)
  .then(res => {
 	console.log(res)
  })

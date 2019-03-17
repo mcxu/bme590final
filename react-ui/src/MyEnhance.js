@@ -1,5 +1,17 @@
-import React, { Component } from 'react';
-import {ListSubheader, IconButton, GridList, GridListTile, GridListTileBar, Button, Typography, Grid, Paper} from '@material-ui/core';
+import React, {
+	Component
+} from 'react';
+import {
+	ListSubheader,
+	IconButton,
+	GridList,
+	GridListTile,
+	GridListTileBar,
+	Button,
+	Typography,
+	Grid,
+	Paper
+} from '@material-ui/core';
 import axios from 'axios'
 
 import DisEnh from './DisEnh'
@@ -14,62 +26,93 @@ export default class MyEnhance extends Component {
 	}
 
 	passUp = () => {
-		var win = this.state.passState ;
-		var im = this.state.passbackI ;
+		var win = this.state.passState;
+		var im = this.state.passbackI;
 		this.props.onMyEnhance(win, im)
 	}
 
 	grabfromKid = (win, im) => {
-		this.setState({passState: win, passbackI: im}, () => {
+		this.setState({
+			passState: win,
+			passbackI: im
+		}, () => {
 			this.passUp()
-		}) ;
+		});
 
 	}
 
 
 	containData = () => {
-	  if (this.state.myData.length === 0){
-	    {this.getData()}
-	  }
-	  //{console.log(image)}
+		if (this.state.myData.length === 0) {
+			{
+				this.getData()
+			}
+		}
+		//{console.log(image)}
 	}
 
 	getData = () => {
-	  console.log('getData')
-	  axios.get("http://vcm-7308.vm.duke.edu:5000/api/user/get_updated_uploads/test_email@duke.edu").then(res => {
+		console.log('getData')
+		axios.get("http://localhost:5000/api/user/get_updated_uploads/test_email@duke.edu").then(res => {
 
 
-	    var myAr = []
-	    myAr = res.data
-	    this.setState({myData: myAr})
-	    //console.log(this.state.myData[0].image_data)
-	  })
+			var myAr = []
+			myAr = res.data
+			this.setState({
+				myData: myAr
+			})
+			//console.log(this.state.myData[0].image_data)
+		})
 	}
 
 	render() {
 		return (
 
-			<div>
-			{this.containData()}
+			<
+			div > {
+				this.containData()
+			}
 
-			<Paper className='paper'>
-			<GridList cellHeight={400} cols={3}>
+			<
+			Paper className = 'paper' >
+			<
+			GridList cellHeight = {
+				400
+			}
+			cols = {
+				3
+			} >
 
-				<GridListTile key="Subheader" cols={1} style={{height: 'auto'}}>
-					<ListSubheader component="div"> Library </ListSubheader>
-				</GridListTile>
-				// All I have to do here is change this to myData.map and make sure
-				// that the '.' parts match the data type
-				// probably need a little tweaking to pull the thing out of the state though
-				{this.state.myData.map(tile => (
-					<DisEnh tile={tile} onSel={this.grabfromKid}/>
+			<
+			GridListTile key = "Subheader"
+			cols = {
+				1
+			}
+			style = {
+				{
+					height: 'auto'
+				}
+			} >
+			<
+			ListSubheader component = "div" > Library < /ListSubheader> < /GridListTile >
+			// All I have to do here is change this to myData.map and make sure
+			// that the '.' parts match the data type
+			// probably need a little tweaking to pull the thing out of the state though
+			{
+				this.state.myData.map(tile => ( <
+					DisEnh tile = {
+						tile
+					}
+					onSel = {
+						this.grabfromKid
+					}
+					/>
 
-				))}
+				))
+			}
 
-				</GridList>
-				</Paper>
-
-			 </div>
+			</GridList> < /Paper >
+			</div>
 
 		)
 	}

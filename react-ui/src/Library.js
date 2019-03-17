@@ -54,7 +54,7 @@ state = {
     myob2['email'] = 'test_email@duke.edu';
     myob2['format'] = this.state.dType ;
     myob2['image_ids'] = this.state.idArray ;
-    axios.post('http://vcm-7308.vm.duke.edu:5000/api/image/get_images_zipped', myob2)
+    axios.post('http://localhost:5000/api/image/get_images_zipped', myob2)
  	 .then(res => {
 
     var img = res.data.zip_data
@@ -69,7 +69,7 @@ state = {
 
 getData = () => {
   console.log('getData')
-  axios.get("http://vcm-7308.vm.duke.edu:5000/api/user/get_updated_uploads/test_email@duke.edu").then(res => {
+  axios.get("http://localhost:5000/api/user/get_updated_uploads/test_email@duke.edu").then(res => {
 
 
     var myAr = []
